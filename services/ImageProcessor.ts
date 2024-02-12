@@ -35,7 +35,7 @@ export class ImageInputProcessor implements InputProcessorInterface{
 
     async saveImage(output:string,cover:string,dataImage:Buffer){
         try {
-        
+            
         const image = await  Jimp.create(cover); 
 
         
