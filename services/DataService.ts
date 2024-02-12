@@ -18,6 +18,9 @@ export class DataService implements DataInterface{
         FileSystem.write(default_.path,JSON.stringify(savedData));
 
     }
+    async reset(){
+        await FileSystem.write(default_.path,JSON.stringify([]));
+    }
 
     verify(password:string): number {
         let savedData = JSON.parse(FileSystem.read(default_.path));

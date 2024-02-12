@@ -1,4 +1,4 @@
-# steganogany
+# steganegany
 
 To install dependencies:
 
@@ -9,7 +9,7 @@ bun install
 To run:
 
 ```bash
-bun steganogany.ts
+bun steganegany.ts
 ```
 
 # Usage: 
@@ -50,6 +50,14 @@ Arguments:
 Options:
   -h, --help  display help for command
 ```
+## Reset
+```bash
+Usage: steganegany reset [options]
 
+This reset the saved recognized password in the system
+
+Options:
+  -h, --help  display help for command
+```
 
 This project was created using `bun init` in bun v1.0.22. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.

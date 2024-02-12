@@ -2,6 +2,7 @@
 
 import { program } from "commander";
 import { Hide } from "./actions/Hide";
+import { Reset } from "./actions/Reset";
 import { Reveal } from "./actions/Reveal";
 
 program.name("steganegany")
@@ -15,6 +16,10 @@ program.command("hide")
 
 program.command("reveal")
 .argument('<input-file>',"This is the image that hide a message")
-.action(new Reveal().execute)
+.action(new Reveal().execute);
+
+program.command("reset")
+.description('This reset the saved recognized password in the system')
+.action(new Reset().execute)
 
 program.parse();
