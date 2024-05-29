@@ -6,7 +6,11 @@ import { TextProcessor } from "../services/TextProcessor";
 export class Stega{
     static async hide(input:string,output:string,message:string,password:string){
             
-	        
+            const dataService = new DataService();
+            const messageSize = dataService.verify(password as string);
+            if(messageSize > 0){
+                throw new Error("Steganegany key indentity already exists, please choose another one")
+            }
 	        const imageProcessor = new ImageInputProcessor(input);
 	        const imageBinary = await imageProcessor.toBinary();
 	        const textProcessor = new TextProcessor(message);

@@ -1,5 +1,5 @@
 import * as Jimp from "jimp";
-import { InputProcessorInterface } from "../types/InputProcessorInterface";
+import type { InputProcessorInterface } from "../types/InputProcessorInterface";
 
 
 
@@ -14,8 +14,6 @@ export class ImageInputProcessor implements InputProcessorInterface{
      async toBinary(): Promise<string[]> {
         try {
 	        const image =await Jimp.read(this.inputImagePath);
-            
-
             return this.imageReadResolver(image);
         } catch (error) {
             this.imageReadRejector(error)

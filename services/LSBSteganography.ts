@@ -1,5 +1,5 @@
-import { InputProcessorInterface } from "../types/InputProcessorInterface";
-import { SteganographyInterface } from "../types/SteganographyInterface";
+import type { InputProcessorInterface } from "../types/InputProcessorInterface";
+import type { SteganographyInterface } from "../types/SteganographyInterface";
 
 export class LSBSteganography implements SteganographyInterface{
     constructor(
@@ -35,8 +35,7 @@ export class LSBSteganography implements SteganographyInterface{
                 const binaryLastIndex = value.length -1;
                 const bit = value[binaryLastIndex];
                 revealMessage += bit;            
-            }
-            
+            }  
         });
         return revealMessage
         

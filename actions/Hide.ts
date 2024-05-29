@@ -1,5 +1,5 @@
-import { ActionInterface } from "../types/ActionInterface";
-import {start,get,stop} from "prompt";
+import type { ActionInterface } from "../types/ActionInterface";
+import prompt, {start,get,stop} from "prompt";
 import { default_ } from "../config/password";
 import { Stega } from "../facade/Stega";
 
@@ -7,8 +7,10 @@ import { Stega } from "../facade/Stega";
 export class Hide implements ActionInterface{
     async execute(input:string,message:string,output:string): Promise<void> {
         try {
+		prompt.message = "$";
 	let promptInputs;     
 	        let prompts:any[] = [default_];
+			
 	        if(!output){
 	            prompts.push({name:"outputImage",description:"Enter the output name",require:true});
 	        }
