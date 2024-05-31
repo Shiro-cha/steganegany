@@ -1,5 +1,13 @@
 # Based on https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore
 
+# Images
+*.png
+*.jpg
+*.jpeg
+
+#data
+data.json
+
 # Logs
 
 logs

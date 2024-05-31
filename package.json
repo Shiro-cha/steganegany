@@ -1,7 +1,9 @@
 {
-  "name": "steganogany",
-  "module": "steganogany.ts",
-  "bin":"steganogany",
+  "name": "steganegany",
+  "module": "steganegany.ts",
+  "bin":{
+    "steganegany":"build/steganegany.js"
+  },
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest"
