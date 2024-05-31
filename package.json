@@ -11,6 +11,8 @@
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
+  "author":"Shiro Yami",
+  "version":"1.0.0",
   "dependencies": {
     "@types/prompt": "^1.1.8",
     "canvas": "^2.11.2",
