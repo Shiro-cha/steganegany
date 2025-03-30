@@ -1,4 +1,4 @@
-import { InputProcessorInterface } from "../types/InputProcessorInterface";
+import type { InputProcessorInterface } from "../types/InputProcessorInterface";
 
 export class TextProcessor implements InputProcessorInterface{
     constructor(

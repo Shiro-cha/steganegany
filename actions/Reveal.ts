@@ -1,7 +1,7 @@
 import {get} from "prompt";
 import { default_ } from "../config/password";
 import { Stega } from "../facade/Stega";
-import { ActionInterface } from "../types/ActionInterface";
+import type { ActionInterface } from "../types/ActionInterface";
 
 
 export class Reveal implements ActionInterface{
