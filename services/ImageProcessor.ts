@@ -1,9 +1,5 @@
 import * as Jimp from "jimp";
-import { InputProcessorInterface } from "../types/InputProcessorInterface";
-
-
-
-
+import type { InputProcessorInterface } from "../types/InputProcessorInterface";
 
 
 export class ImageInputProcessor implements InputProcessorInterface{
@@ -50,17 +46,22 @@ export class ImageInputProcessor implements InputProcessorInterface{
         
          
     }
+    private stringtoBinary(value:number):string{
+        const binary = value.toString(2).padStart(8,"0");
+        return binary;
+    }
 
     private imageReadResolver(image:Jimp):string[]{
         let binaryArray:string[] = [];
+        const thisobject=this;
         image.bitmap.data.forEach(function(value:number){
-            const binary = value.toString(2).padStart(8,"0");
+            const binary = thisobject.stringtoBinary(value);
             binaryArray.push(binary);
         })
         
         return binaryArray;
     }
     private imageReadRejector(error:unknown){
-
+        console.error("Error on reading image");
     }
 }
