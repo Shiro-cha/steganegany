@@ -31,20 +31,16 @@ export class ImageInputProcessor implements InputProcessorInterface{
 
     async saveImage(output:string,cover:string,dataImage:Buffer){
         try {
-        console.log(cover);
         
         const image = await  Jimp.create(cover); 
-
         
        image.bitmap.data = dataImage;
      
-        await image.writeAsync(output);
+        await image.writeAsync(`${output}`);
         
     } catch (error) {
         console.error('Error:', error);
-    }
-        
-         
+    }             
     }
     private stringtoBinary(value:number):string{
         const binary = value.toString(2).padStart(8,"0");

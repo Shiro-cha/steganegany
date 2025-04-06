@@ -1,7 +1,7 @@
 
 import { hash } from "bun";
 import { default_ } from "../config/data";
-import { DataInterface } from "../types/DataInterface";
+import type { DataInterface } from "../types/DataInterface";
 import { FileSystem } from "../utils/FileSystem";
 
 export class DataService implements DataInterface{

@@ -12,6 +12,7 @@ program.command("hide")
 .argument('<input-file>',"This is the image to hide the message")
 .argument('[message]',"This is the message to hide")
 .argument('[output-file]',"This is the image that hide a message")
+.option("-t,--target <string>","This is the path where the output will be stored")
 .action(new Hide().execute);
 
 program.command("reveal")
