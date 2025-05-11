@@ -1,6 +1,6 @@
 {
   "name": "steganegany",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A CLI tool to hide and reveal messages in PNG images using steganography LSB random algorithms.",
   "type": "module",
   "main": "dist/steganegany.js",
@@ -11,7 +11,13 @@
     "build": "bun build steganegany.ts --outdir dist --target node --minify",
     "start": "node dist/steganegany.js"
   },
-  "keywords": ["cli", "steganography", "png", "typescript", "node"],
+  "keywords": [
+    "cli",
+    "steganography",
+    "png",
+    "typescript",
+    "node"
+  ],
   "author": "Shiro Yukami",
   "license": "MIT",
   "dependencies": {
