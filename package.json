@@ -1,6 +1,6 @@
 {
   "name": "steganegany",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A CLI tool to hide and reveal messages in PNG images using steganography LSB random algorithms.",
   "type": "module",
   "main": "dist/steganegany.js",
@@ -25,7 +25,6 @@
     "commander": "^12.0.0",
     "jimp": "^0.22.10",
     "prompt": "^1.3.0"
-
   },
   "devDependencies": {
     "@types/bun": "latest",
