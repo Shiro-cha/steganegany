@@ -22,7 +22,6 @@
   "license": "MIT",
   "dependencies": {
     "@types/prompt": "^1.1.8",
-    "canvas": "^2.11.2",
     "commander": "^12.0.0",
     "jimp": "^0.22.10",
     "prompt": "^1.3.0",
