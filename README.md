@@ -1,6 +1,4 @@
-D'accord, voici le **README** directement adapté pour les utilisateurs du projet :
 
----
 
 # Steganegany
 
