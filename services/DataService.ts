@@ -1,41 +1,49 @@
+import { createHash } from "node:crypto";
+import { default_ } from "../config/data.js";
+import type { DataInterface } from "../types/DataInterface.js";
+import { FileSystem } from "../utils/FileSystem.js";
 
-import { hash } from "bun";
-import { default_ } from "../config/data";
-import type { DataInterface } from "../types/DataInterface";
-import { FileSystem } from "../utils/FileSystem";
+interface SavedDataEntry {
+  password: string;
+  size: number;
+}
 
-export class DataService implements DataInterface{
-    save(data:{password:string,size:number}): void {
-        let savedData = JSON.parse(FileSystem.read(default_.path));
-        if(!Array.isArray(savedData)){
-            savedData = [];
-        }
-        ;
-        savedData.push({
-            password:hash(data.password).toString(),
-            size:data.size
-        });
-        FileSystem.write(default_.path,JSON.stringify(savedData));
+function hashPassword(password: string): string {
+  return createHash("sha256").update(password).digest("hex");
+}
 
+export class DataService implements DataInterface {
+  private loadData(): SavedDataEntry[] {
+    try {
+      const rawData = FileSystem.read(default_.path);
+      const parsedData = JSON.parse(rawData);
+      return Array.isArray(parsedData) ? parsedData : [];
+    } catch {
+      return [];
     }
-    async reset(){
-        await FileSystem.write(default_.path,JSON.stringify([]));
-    }
+  }
 
-    verify(password:string): number {
-        let savedData = JSON.parse(FileSystem.read(default_.path));
-        if(!Array.isArray(savedData)){
-            throw new Error("No steganogany in the system yet...");
-        }
-        for (let i = 0; i < savedData.length; i++) {
-            const data = savedData[i];
-            const hashedPassword = hash(password).toString();
-            if(hashedPassword === data?.password){
-                return data?.size;
-            }
-            
-        }
-        return -1;
+  private saveData(data: SavedDataEntry[]): void {
+    FileSystem.write(default_.path, JSON.stringify(data));
+  }
 
-    }
+  public save(entry: { password: string; size: number }): void {
+    const data = this.loadData();
+    const hashedPassword = hashPassword(entry.password);
+
+    data.push({ password: hashedPassword, size: entry.size });
+    this.saveData(data);
+  }
+
+  public async reset(): Promise<void> {
+    this.saveData([]);
+  }
+
+  public verify(password: string): number {
+    const data = this.loadData();
+    const hashedPassword = hashPassword(password);
+
+    const match = data.find((entry) => entry.password === hashedPassword);
+    return match ? match.size : -1;
+  }
 }

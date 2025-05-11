@@ -1,26 +1,36 @@
-#!/home/shiro/.bun/bin/bun
+#!/usr/bin/env node
 
 import { program } from "commander";
-import { Hide } from "./actions/Hide";
-import { Reset } from "./actions/Reset";
-import { Reveal } from "./actions/Reveal";
+import { Hide } from "./actions/Hide.js";
+import { Reset } from "./actions/Reset.js";
+import { Reveal } from "./actions/Reveal.js";
 
-program.name("steganegany")
-.description("This hide message into an image (only png supported)");
+program
+  .name("steganegany")
+  .description("Hide messages inside PNG images using steganography.");
 
-program.command("hide")
-.argument('<input-file>',"This is the image to hide the message")
-.argument('[message]',"This is the message to hide")
-.argument('[output-file]',"This is the image that hide a message")
-.option("-t,--target <string>","This is the path where the output will be stored")
-.action(new Hide().execute);
+program
+  .command("hide")
+  .argument("<input-file>", "Image file where the message will be hidden")
+  .argument("[message]", "The message to hide (optional)")
+  .argument("[output-file]", "Output file name (optional)")
+  .option("-t, --target <string>", "Path where the output image will be stored")
+  .action(async (input, message, output, options) => {
+    await new Hide().execute(input, message, output, options);
+  });
 
-program.command("reveal")
-.argument('<input-file>',"This is the image that hide a message")
-.action(new Reveal().execute);
+program
+  .command("reveal")
+  .argument("<input-file>", "Image that contains a hidden message")
+  .action(async (input) => {
+    await new Reveal().execute(input);
+  });
 
-program.command("reset")
-.description('This reset the saved recognized password in the system')
-.action(new Reset().execute)
+program
+  .command("reset")
+  .description("Reset the saved recognized password in the system")
+  .action(async () => {
+    await new Reset().execute();
+  });
 
 program.parse();
